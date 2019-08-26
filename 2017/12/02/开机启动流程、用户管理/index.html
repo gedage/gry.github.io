@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="centos6 centos7    按下电源 按下电源   开机自检BIOS 开机自检BIOS   MBR引导 MBR引导   GRUB菜单 GRUB菜单   加载内核kernel 加载内核kernel   运行INIT进程 运行systemd进程   读取/etc/inintab 选择启动级别/etc/systemd/system/default.target   读取/etc/rc.s">
+<meta name="description" content="centos6 centos7    按下电源 按下电源   开机自检BIOS 开机自检BIOS   MBR引导 MBR引导   GRUB菜单 GRUB菜单   加载内核kernel 加载内核kernel   运行INIT进程 运行systemd进程   读取/etc/inintab 选择启动级别/etc/systemd/system/default.target   读取/etc/rc.">
 <meta name="keywords" content="centos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centos6、centos7开机启动流程">
 <meta property="og:url" content="https://gry.github.io/2017/12/02/开机启动流程、用户管理/index.html">
 <meta property="og:site_name" content="GRY的博客">
-<meta property="og:description" content="centos6 centos7    按下电源 按下电源   开机自检BIOS 开机自检BIOS   MBR引导 MBR引导   GRUB菜单 GRUB菜单   加载内核kernel 加载内核kernel   运行INIT进程 运行systemd进程   读取/etc/inintab 选择启动级别/etc/systemd/system/default.target   读取/etc/rc.s">
+<meta property="og:description" content="centos6 centos7    按下电源 按下电源   开机自检BIOS 开机自检BIOS   MBR引导 MBR引导   GRUB菜单 GRUB菜单   加载内核kernel 加载内核kernel   运行INIT进程 运行systemd进程   读取/etc/inintab 选择启动级别/etc/systemd/system/default.target   读取/etc/rc.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612146953.png">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612274535.png">
@@ -109,10 +109,10 @@
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558963893802.png">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559045097230.png">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559045107461.png">
-<meta property="og:updated_time" content="2019-08-26T13:58:19.464Z">
+<meta property="og:updated_time" content="2019-08-26T14:04:42.272Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos6、centos7开机启动流程">
-<meta name="twitter:description" content="centos6 centos7    按下电源 按下电源   开机自检BIOS 开机自检BIOS   MBR引导 MBR引导   GRUB菜单 GRUB菜单   加载内核kernel 加载内核kernel   运行INIT进程 运行systemd进程   读取/etc/inintab 选择启动级别/etc/systemd/system/default.target   读取/etc/rc.s">
+<meta name="twitter:description" content="centos6 centos7    按下电源 按下电源   开机自检BIOS 开机自检BIOS   MBR引导 MBR引导   GRUB菜单 GRUB菜单   加载内核kernel 加载内核kernel   运行INIT进程 运行systemd进程   读取/etc/inintab 选择启动级别/etc/systemd/system/default.target   读取/etc/rc.">
 <meta name="twitter:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612146953.png">
 
 
@@ -397,7 +397,8 @@
       
 
       
-        <table>
+        <a id="more"></a>
+<table>
 <thead>
 <tr>
 <th align="center">centos6</th>
@@ -445,8 +446,7 @@
 <td align="center">启动mingetty</td>
 </tr>
 </tbody></table>
-<h1 id="centos6、centos7开机启动流程"><a href="#centos6、centos7开机启动流程" class="headerlink" title="centos6、centos7开机启动流程"></a>centos6、centos7开机启动流程</h1><a id="more"></a>
-<h1 id="开机启动流程、用户管理"><a href="#开机启动流程、用户管理" class="headerlink" title="开机启动流程、用户管理"></a>开机启动流程、用户管理</h1><h2 id="一、-让一个程序开机启动有什么方法："><a href="#一、-让一个程序开机启动有什么方法：" class="headerlink" title="一、 让一个程序开机启动有什么方法："></a>一、 让一个程序开机启动有什么方法：</h2><h3 id="1-etc-rc-local-开机启动脚本或命令，放入即可。"><a href="#1-etc-rc-local-开机启动脚本或命令，放入即可。" class="headerlink" title="1./etc/rc.local  开机启动脚本或命令，放入即可。"></a>1./etc/rc.local  开机启动脚本或命令，放入即可。</h3><h3 id="2-通过chkconfig命令管理-你要启动的脚本-服务。（远控卡）"><a href="#2-通过chkconfig命令管理-你要启动的脚本-服务。（远控卡）" class="headerlink" title="2.通过chkconfig命令管理 你要启动的脚本/服务。（远控卡）"></a>2.通过chkconfig命令管理 你要启动的脚本/服务。（远控卡）</h3><h2 id="二、二用户分类"><a href="#二、二用户分类" class="headerlink" title="二、二用户分类"></a>二、二用户分类</h2><h3 id="1-UID-user-id-身份证号码"><a href="#1-UID-user-id-身份证号码" class="headerlink" title="1.UID  user id 身份证号码"></a>1.UID  user id 身份证号码</h3><h3 id="2-GID-geoup-id-用户组ID"><a href="#2-GID-geoup-id-用户组ID" class="headerlink" title="2.GID geoup id 用户组ID"></a>2.GID geoup id 用户组ID</h3><h3 id="3-root-皇帝ID-UID：0"><a href="#3-root-皇帝ID-UID：0" class="headerlink" title="3.root 皇帝ID UID：0"></a>3.root 皇帝ID UID：0</h3><h3 id="4-虚拟用户：傀儡用户UID-1-499-（centos7-1-999）"><a href="#4-虚拟用户：傀儡用户UID-1-499-（centos7-1-999）" class="headerlink" title="4.虚拟用户：傀儡用户UID 1-499 （centos7 1-999）"></a>4.虚拟用户：傀儡用户UID 1-499 （centos7 1-999）</h3><p>​       用户的命令解释器：/sbin/nologin</p>
+<h1 id="centos6、centos7开机启动流程"><a href="#centos6、centos7开机启动流程" class="headerlink" title="centos6、centos7开机启动流程"></a>centos6、centos7开机启动流程</h1><h1 id="开机启动流程、用户管理"><a href="#开机启动流程、用户管理" class="headerlink" title="开机启动流程、用户管理"></a>开机启动流程、用户管理</h1><h2 id="一、-让一个程序开机启动有什么方法："><a href="#一、-让一个程序开机启动有什么方法：" class="headerlink" title="一、 让一个程序开机启动有什么方法："></a>一、 让一个程序开机启动有什么方法：</h2><h3 id="1-etc-rc-local-开机启动脚本或命令，放入即可。"><a href="#1-etc-rc-local-开机启动脚本或命令，放入即可。" class="headerlink" title="1./etc/rc.local  开机启动脚本或命令，放入即可。"></a>1./etc/rc.local  开机启动脚本或命令，放入即可。</h3><h3 id="2-通过chkconfig命令管理-你要启动的脚本-服务。（远控卡）"><a href="#2-通过chkconfig命令管理-你要启动的脚本-服务。（远控卡）" class="headerlink" title="2.通过chkconfig命令管理 你要启动的脚本/服务。（远控卡）"></a>2.通过chkconfig命令管理 你要启动的脚本/服务。（远控卡）</h3><h2 id="二、二用户分类"><a href="#二、二用户分类" class="headerlink" title="二、二用户分类"></a>二、二用户分类</h2><h3 id="1-UID-user-id-身份证号码"><a href="#1-UID-user-id-身份证号码" class="headerlink" title="1.UID  user id 身份证号码"></a>1.UID  user id 身份证号码</h3><h3 id="2-GID-geoup-id-用户组ID"><a href="#2-GID-geoup-id-用户组ID" class="headerlink" title="2.GID geoup id 用户组ID"></a>2.GID geoup id 用户组ID</h3><h3 id="3-root-皇帝ID-UID：0"><a href="#3-root-皇帝ID-UID：0" class="headerlink" title="3.root 皇帝ID UID：0"></a>3.root 皇帝ID UID：0</h3><h3 id="4-虚拟用户：傀儡用户UID-1-499-（centos7-1-999）"><a href="#4-虚拟用户：傀儡用户UID-1-499-（centos7-1-999）" class="headerlink" title="4.虚拟用户：傀儡用户UID 1-499 （centos7 1-999）"></a>4.虚拟用户：傀儡用户UID 1-499 （centos7 1-999）</h3><p>​       用户的命令解释器：/sbin/nologin</p>
 <p>​       每个用户、服务运行的时候都需要一个用户</p>
 <p>​       傀儡用户不需要登录系统</p>
 <h3 id="5-普通用户-UID-500-（centos7-1000-）"><a href="#5-普通用户-UID-500-（centos7-1000-）" class="headerlink" title="5.普通用户 UID 500+ （centos7 1000+）"></a>5.普通用户 UID 500+ （centos7 1000+）</h3><h2 id="三-用户相关配置文件"><a href="#三-用户相关配置文件" class="headerlink" title="三.用户相关配置文件"></a>三.用户相关配置文件</h2><h3 id="1-etc-passwd-用户信息"><a href="#1-etc-passwd-用户信息" class="headerlink" title="1./etc/passwd 用户信息"></a>1./etc/passwd 用户信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:    x:	   0:     0:    root:     /root:   /bin/bash</span><br><span class="line">用户名  密码   UID    GID  用户的说明   家目录   命令解释器</span><br></pre></td></tr></table></figure>

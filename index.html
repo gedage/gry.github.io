@@ -312,7 +312,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-26T21:56:03+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-26T21:57:18+08:00">
                 2019-08-26
               </time>
             
@@ -351,8 +351,7 @@
 
       
         
-          
-            <p>title: centos6、centos7开机启动流程<br>date: 2017-12-02 21:01:24<br>comments: true<br>toc: true<br>categories: linux<br>tags:  centos</p>
+          <p>title: centos6、centos7开机启动流程<br>date: 2017-12-02 21:01:24<br>comments: true<br>toc: true<br>categories: linux<br>tags:  centos</p>
 <table>
 <thead>
 <tr>
@@ -401,84 +400,14 @@
 <td align="center">启动mingetty</td>
 </tr>
 </tbody></table>
-<h1 id="centos6、centos7开机启动流程"><a href="#centos6、centos7开机启动流程" class="headerlink" title="centos6、centos7开机启动流程"></a>centos6、centos7开机启动流程</h1><h1 id="开机启动流程、用户管理"><a href="#开机启动流程、用户管理" class="headerlink" title="开机启动流程、用户管理"></a>开机启动流程、用户管理</h1><h2 id="一、-让一个程序开机启动有什么方法："><a href="#一、-让一个程序开机启动有什么方法：" class="headerlink" title="一、 让一个程序开机启动有什么方法："></a>一、 让一个程序开机启动有什么方法：</h2><h3 id="1-etc-rc-local-开机启动脚本或命令，放入即可。"><a href="#1-etc-rc-local-开机启动脚本或命令，放入即可。" class="headerlink" title="1./etc/rc.local  开机启动脚本或命令，放入即可。"></a>1./etc/rc.local  开机启动脚本或命令，放入即可。</h3><h3 id="2-通过chkconfig命令管理-你要启动的脚本-服务。（远控卡）"><a href="#2-通过chkconfig命令管理-你要启动的脚本-服务。（远控卡）" class="headerlink" title="2.通过chkconfig命令管理 你要启动的脚本/服务。（远控卡）"></a>2.通过chkconfig命令管理 你要启动的脚本/服务。（远控卡）</h3><h2 id="二、二用户分类"><a href="#二、二用户分类" class="headerlink" title="二、二用户分类"></a>二、二用户分类</h2><h3 id="1-UID-user-id-身份证号码"><a href="#1-UID-user-id-身份证号码" class="headerlink" title="1.UID  user id 身份证号码"></a>1.UID  user id 身份证号码</h3><h3 id="2-GID-geoup-id-用户组ID"><a href="#2-GID-geoup-id-用户组ID" class="headerlink" title="2.GID geoup id 用户组ID"></a>2.GID geoup id 用户组ID</h3><h3 id="3-root-皇帝ID-UID：0"><a href="#3-root-皇帝ID-UID：0" class="headerlink" title="3.root 皇帝ID UID：0"></a>3.root 皇帝ID UID：0</h3><h3 id="4-虚拟用户：傀儡用户UID-1-499-（centos7-1-999）"><a href="#4-虚拟用户：傀儡用户UID-1-499-（centos7-1-999）" class="headerlink" title="4.虚拟用户：傀儡用户UID 1-499 （centos7 1-999）"></a>4.虚拟用户：傀儡用户UID 1-499 （centos7 1-999）</h3><p>​       用户的命令解释器：/sbin/nologin</p>
-<p>​       每个用户、服务运行的时候都需要一个用户</p>
-<p>​       傀儡用户不需要登录系统</p>
-<h3 id="5-普通用户-UID-500-（centos7-1000-）"><a href="#5-普通用户-UID-500-（centos7-1000-）" class="headerlink" title="5.普通用户 UID 500+ （centos7 1000+）"></a>5.普通用户 UID 500+ （centos7 1000+）</h3><h2 id="三-用户相关配置文件"><a href="#三-用户相关配置文件" class="headerlink" title="三.用户相关配置文件"></a>三.用户相关配置文件</h2><h3 id="1-etc-passwd-用户信息"><a href="#1-etc-passwd-用户信息" class="headerlink" title="1./etc/passwd 用户信息"></a>1./etc/passwd 用户信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root:    x:	   0:     0:    root:     /root:   /bin/bash</span><br><span class="line">用户名  密码   UID    GID  用户的说明   家目录   命令解释器</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-etc-shadow-用户密码信息"><a href="#2-etc-shadow-用户密码信息" class="headerlink" title="2./etc/shadow 用户密码信息"></a>2./etc/shadow 用户密码信息</h3><h3 id="3-etc-geoup用户组信息"><a href="#3-etc-geoup用户组信息" class="headerlink" title="3./etc/geoup用户组信息"></a>3./etc/geoup用户组信息</h3><h3 id="4-etc-gshadow-用户组密码信息"><a href="#4-etc-gshadow-用户组密码信息" class="headerlink" title="4./etc/gshadow 用户组密码信息"></a>4./etc/gshadow 用户组密码信息</h3><h2 id="四-用户相关的目录"><a href="#四-用户相关的目录" class="headerlink" title="四.用户相关的目录"></a>四.用户相关的目录</h2><p>/etc/skel 新用户的老家的模板（新用户家目录的样子） 存放新建用户的目录（创建新用户后会把这个目录下的文件拷贝到新用户的家目录下）</p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612146953.png" alt="1558612146953"></p>
-<h3 id="登录到普通用户下突然发现"><a href="#登录到普通用户下突然发现" class="headerlink" title="登录到普通用户下突然发现"></a>登录到普通用户下突然发现</h3><h3 id="bash-4-2"><a href="#bash-4-2" class="headerlink" title="-bash-4.2$"></a>-bash-4.2$</h3><h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612274535.png" alt="1558612274535"></p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612288855.png" alt="1558612288855"></p>
-<h2 id="五-用户管理的命令"><a href="#五-用户管理的命令" class="headerlink" title="五.用户管理的命令"></a>五.用户管理的命令</h2><h3 id="1-用户相关命令："><a href="#1-用户相关命令：" class="headerlink" title="1.用户相关命令："></a>1.用户相关命令：</h3><h4 id="1-1-useradd：useradd-添加用户"><a href="#1-1-useradd：useradd-添加用户" class="headerlink" title="1.1.useradd：useradd 添加用户"></a>1.1.useradd：useradd 添加用户</h4><p>​    -u 指定UID<br>​    -s 指定登录shell<br>​        /bin/bash<br>​        /bin/nologin<br>​    -g 指定GID，用户组<br>​    -M  不创建家目录</p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558618154194.png" alt="1558618154194"></p>
-<h4 id="1-2-userdel-删除用户-（不要删除-要注释就OK）"><a href="#1-2-userdel-删除用户-（不要删除-要注释就OK）" class="headerlink" title="1.2.userdel 删除用户 （不要删除 要注释就OK）"></a>1.2.userdel 删除用户 （不要删除 要注释就OK）</h4><p>​    -r         删除家目录<br>​    userdel oldboy  只删除用户 不删除家目录<br>​    userdel -r oldboy 同家目录一起删除</p>
-<p>（注：工作中再passwd中注释#用户就可以了，不要删除。）</p>
-<h4 id="1-3-usermod-修改用户信息"><a href="#1-3-usermod-修改用户信息" class="headerlink" title="1.3.usermod 修改用户信息"></a>1.3.usermod 修改用户信息</h4><p>​     -s 修改shell</p>
-<p>​     -g 属于的家庭，用户组 （主要组）</p>
-<p>​    -G属于多个家庭  （附加组）</p>
-<h3 id="2-批量创建用户及密码"><a href="#2-批量创建用户及密码" class="headerlink" title="2.批量创建用户及密码"></a>2.批量创建用户及密码</h3><h5 id="2-1创建十个用户-密码均为123456"><a href="#2-1创建十个用户-密码均为123456" class="headerlink" title="2.1创建十个用户 密码均为123456"></a>2.1创建十个用户 密码均为123456</h5><p>sed</p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558946543319.png" alt="1558946543319"></p>
-<p>awk</p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558946598152.png" alt="1558946598152"></p>
-<h5 id="2-2非交互式创建密码"><a href="#2-2非交互式创建密码" class="headerlink" title="2.2非交互式创建密码"></a>2.2非交互式创建密码</h5><p>echo <strong>**</strong>|passwd –stdin  用户</p>
-<p><img src="C:/Users/Administrator/AppData/Local/YNote/data/qq53C1432A4023123659822657223B8B13/554281cf57f54c53978ae8b661a7faf4/64f155a0a56d4c759002d93722f963d1.jpg" alt="img"></p>
-<h5 id="2-3-生成随机数（随机密码）"><a href="#2-3-生成随机数（随机密码）" class="headerlink" title="2.3 生成随机数（随机密码）"></a>2.3 生成随机数（随机密码）</h5><h6 id="2-31-echo-RANDOM"><a href="#2-31-echo-RANDOM" class="headerlink" title="2.31     echo $((RANDOM))"></a>2.31     echo $((RANDOM))</h6><p>​       随机生成0-32767数字，有重复的可能。可加指纹。echo $((RANDOM)) |md5sum</p>
-<p>​      取余 echo $((RANDOM%10))  只选0-9</p>
-<h6 id="2-32-dev-urandom"><a href="#2-32-dev-urandom" class="headerlink" title="2.32   /dev/urandom"></a>2.32   /dev/urandom</h6><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558949945224.png" alt="1558949945224"></p>
-<p>​      可加指纹 md5sum</p>
-<h6 id="2-33-date"><a href="#2-33-date" class="headerlink" title="2.33  date"></a>2.33  date</h6><p>​     date +%N   纳秒  按照纳秒在变化。可加指纹date +%N|md5sum</p>
-<h6 id="2-34uuidgen"><a href="#2-34uuidgen" class="headerlink" title="2.34uuidgen"></a>2.34uuidgen</h6><p>  <img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566269560149.png" alt="1566269560149"></p>
-<p>随机的uuid 可以tr替换</p>
-<h5 id="2-4创建十个用户并且配十个随机密码"><a href="#2-4创建十个用户并且配十个随机密码" class="headerlink" title="2.4创建十个用户并且配十个随机密码"></a>2.4创建十个用户并且配十个随机密码</h5><p>创建八位随机密码 赋值给pass</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pass=`date +%N|md5sun|cut -c1-8`</span><br><span class="line">pass=$(date +%N|md5sum|cut -c1-8)        两种方法皆可</span><br></pre></td></tr></table></figure>
-
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558943942147.png" alt="1558943942147"></p>
-<p>创建stu{1..10}用户-给每个用户八位不同随机密码-用户密码存入pass.txt中。</p>
-<p>sed</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo stu&#123;1..10&#125;|xargs -n1|sed -r &apos;s#(.*)#useradd \1;pass=$(date +%N|md5sum|cut -c1-8);echo $pass \1 &gt;&gt;pass.txt;echo $pass|passwd --stdin \1#g&apos;|bash</span><br></pre></td></tr></table></figure>
-
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558950463144.png" alt="1558950463144"></p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559029449757.png" alt="1559029449757"></p>
-<p>awk</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo stu&#123;1..10&#125;|xargs -n1|awk &apos;&#123;print &quot;useradd &quot; $0 &quot; ; pass=$(date +%N|md5sum|cut -c1-8)&quot;&quot; ;&quot; &quot;echo $pass &quot;$1&quot; &gt;&gt;pass.txt&quot; &quot; ;&quot; &quot;echo $pass|passwd --stdin &quot;$1&quot;&quot; &apos;&#125;|bash</span><br></pre></td></tr></table></figure>
-
-<p>![img](file:///D:\Documents\Tencent Files\1468870854\Image\C2C\42NE(G@38HQXVTJ(Q7T)31I.png)</p>
-<h5 id="2-5批量删除用户（有序）"><a href="#2-5批量删除用户（有序）" class="headerlink" title="2.5批量删除用户（有序）"></a>2.5批量删除用户（有序）</h5><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559029530673.png" alt="1559029530673"></p>
-<h2 id="六-修改hhd端口-禁止root用户远程登录"><a href="#六-修改hhd端口-禁止root用户远程登录" class="headerlink" title="六.修改hhd端口(禁止root用户远程登录 )"></a>六.修改hhd端口(禁止root用户远程登录 )</h2><p> 进入vim  /etc/ssh/sshd_config</p>
-<p>默认22端口    #port 22 底下加一行  port 端口  </p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558958613213.png" alt="1558958613213"></p>
-<p>修改完成以后重新加载或者重启sshd    </p>
-<h4 id="分析日志-查看-var-log-secure-安全日志-failure或Failed"><a href="#分析日志-查看-var-log-secure-安全日志-failure或Failed" class="headerlink" title="分析日志 查看/var/log/secure 安全日志  failure或Failed"></a>分析日志 查看/var/log/secure 安全日志  failure或Failed</h4><h2 id="七-给文件加指纹"><a href="#七-给文件加指纹" class="headerlink" title="七.给文件加指纹"></a>七.给文件加指纹</h2><h3 id="1-md5sum-1-txt-gt-police-md5"><a href="#1-md5sum-1-txt-gt-police-md5" class="headerlink" title="1. md5sum 1.txt &gt; police.md5"></a>1. md5sum 1.txt &gt; police.md5</h3><p>​    给1.txt生成一个指纹  并且把指纹放入police.md5中</p>
-<h3 id="2-md5sum-c-police-md5"><a href="#2-md5sum-c-police-md5" class="headerlink" title="2. md5sum -c police.md5"></a>2. md5sum -c police.md5</h3><p>​           查看指纹是否有变化</p>
-<p>​           有变化就修改过了</p>
-<h4 id><a href="#" class="headerlink" title></a><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558960544597.png" alt="1558960544597"></h4><h2 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h2><p>  修改文件或者目录所有者和术语的用户组。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式：chown lizhenya.lizhenya    /tmp/1.txt  </span><br><span class="line">            属主       属组        文件</span><br></pre></td></tr></table></figure>
-
-<p> -R  递归     chown -R lizhenya *</p>
-<p>w的使用方法</p>
-<p><img src="C:/Users/Administrator/AppData/Local/YNote/data/qq53C1432A4023123659822657223B8B13/c94f6c2a48534028994681fd954c6fb1/clipboard.png" alt="img"></p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558962259424.png" alt="1558962259424"></p>
-<h2 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h2><p>sudo -l 查看当前用户是否有sudo</p>
-<p>visudo ===== vim /etc/sudoers</p>
-<p>lizhenya   ALL=(ALL)      /usr/bin/ls<br>授权的命令 必须跟全路径</p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558963655491.png" alt="1558963655491"></p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558963749607.png" alt="1558963749607"></p>
-<p>sudo -k 清空缓存密码<br>NOPASSWD 不需要密码</p>
-<p>lizhenya  ALL=(ALL)     NOPASSWD:ALL</p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558963893802.png" alt="1558963893802"></p>
-<h2 id="八-文件权限"><a href="#八-文件权限" class="headerlink" title="八.文件权限"></a>八.文件权限</h2><h2 id="1-权限体系"><a href="#1-权限体系" class="headerlink" title="1.权限体系"></a>1.权限体系</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.文件对应权限</span><br><span class="line">r===read 可读</span><br><span class="line">w===wirte 可写</span><br><span class="line">x===execute 可执行</span><br><span class="line">如何查看当前用户对某个文件或目录有什么权限</span><br><span class="line">ll /etc/hosts</span><br><span class="line">-rw-r--r-- 等信息</span><br><span class="line">2.权限的计算</span><br><span class="line">r===4</span><br><span class="line">w===2</span><br><span class="line">x===1</span><br><span class="line">-===0</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-修改文件权限-chmod"><a href="#2-修改文件权限-chmod" class="headerlink" title="2.修改文件权限 chmod"></a>2.修改文件权限 chmod</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">属主 属组 其他用户</span><br><span class="line">user group others</span><br><span class="line">u g o</span><br><span class="line">方法一:</span><br><span class="line">例:属主去掉写入权限使用</span><br><span class="line">chmod u-w 1.sh</span><br><span class="line">例:属主同时给rwx权限 = 先清除在赋值权限</span><br><span class="line">chmod u=rwx 1.sh</span><br><span class="line">例:属主 属组 其他用户同时增加x执行权限</span><br><span class="line">chmod ugo+x 1.sh</span><br><span class="line">例:同时删除x执行权限 a=ugo (a=all)</span><br><span class="line">chmod a-x 1.sh</span><br><span class="line">例:使用a对所有用户增加x执行权限</span><br><span class="line">chmod a+x 1.sh</span><br><span class="line">方法二:使用数字进行权限修改(常用)</span><br><span class="line">例: 文件修改为644权限 rw-r--r—</span><br><span class="line">chmod 644 1.sh</span><br><span class="line">例：文件修改为755权限 rwx-r-xr-x</span><br><span class="line">chmod 755 1.sh</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-文件权限总结"><a href="#3-文件权限总结" class="headerlink" title="3.文件权限总结"></a>3.文件权限总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. r 显示文件内容</span><br><span class="line">2. w 是否能修改文件的内容 需要有r权限配合 只有w的时候 保存退出会导致文件内容清空</span><br><span class="line">3. x是否有执行权限 需要有r可读权限配置</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-目录权限总结"><a href="#4-目录权限总结" class="headerlink" title="4.目录权限总结"></a>4.目录权限总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. r是否能查看目录的内容ls</span><br><span class="line">2. w是否能在目录中创建 删除 重命名 文件权限</span><br><span class="line">3. x 是否有进入目录的权限 cd</span><br><span class="line">4. 注意(目录权限):</span><br><span class="line">1. r 是否能查看目录内容ls 需要x权限配合</span><br><span class="line">2. w 是否能在目录中创建删除 重命名 文件权限 需要x权限配合</span><br><span class="line">3. .x 是否能进入到目录权限 cd 是否能修改或查看目录中文件属性</span><br></pre></td></tr></table></figure>
-
-<h3 id="Linux文件和目录权限总结"><a href="#Linux文件和目录权限总结" class="headerlink" title="Linux文件和目录权限总结"></a>Linux文件和目录权限总结</h3><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559045097230.png" alt="1559045097230"></p>
-<h3 id="权限拒绝排查流程"><a href="#权限拒绝排查流程" class="headerlink" title="权限拒绝排查流程"></a>权限拒绝排查流程</h3><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559045107461.png" alt="1559045107461"></p>
-
-          
+<h1 id="centos6、centos7开机启动流程"><a href="#centos6、centos7开机启动流程" class="headerlink" title="centos6、centos7开机启动流程"></a>centos6、centos7开机启动流程</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/26/开机启动流程、用户管理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

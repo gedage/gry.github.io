@@ -88,7 +88,7 @@
 <meta property="og:description" content="centos6、centos7开机启动流程">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612146953.png">
-<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612274535.png">
+<meta property="og:image" content="https://gry.github.io/2017/12/02/kai开机启动流程、用户管理/%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612274535.png">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612288855.png">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558618154194.png">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558946543319.png">
@@ -109,7 +109,7 @@
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558963893802.png">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559045097230.png">
 <meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559045107461.png">
-<meta property="og:updated_time" content="2019-08-26T14:06:17.332Z">
+<meta property="og:updated_time" content="2019-08-27T03:17:52.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centos6、centos7开机启动流程">
 <meta name="twitter:description" content="centos6、centos7开机启动流程">
@@ -454,7 +454,7 @@
 
 <h3 id="2-etc-shadow-用户密码信息"><a href="#2-etc-shadow-用户密码信息" class="headerlink" title="2./etc/shadow 用户密码信息"></a>2./etc/shadow 用户密码信息</h3><h3 id="3-etc-geoup用户组信息"><a href="#3-etc-geoup用户组信息" class="headerlink" title="3./etc/geoup用户组信息"></a>3./etc/geoup用户组信息</h3><h3 id="4-etc-gshadow-用户组密码信息"><a href="#4-etc-gshadow-用户组密码信息" class="headerlink" title="4./etc/gshadow 用户组密码信息"></a>4./etc/gshadow 用户组密码信息</h3><h2 id="四-用户相关的目录"><a href="#四-用户相关的目录" class="headerlink" title="四.用户相关的目录"></a>四.用户相关的目录</h2><p>/etc/skel 新用户的老家的模板（新用户家目录的样子） 存放新建用户的目录（创建新用户后会把这个目录下的文件拷贝到新用户的家目录下）</p>
 <p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612146953.png" alt="1558612146953"></p>
-<h3 id="登录到普通用户下突然发现"><a href="#登录到普通用户下突然发现" class="headerlink" title="登录到普通用户下突然发现"></a>登录到普通用户下突然发现</h3><h3 id="bash-4-2"><a href="#bash-4-2" class="headerlink" title="-bash-4.2$"></a>-bash-4.2$</h3><h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612274535.png" alt="1558612274535"></p>
+<h3 id="登录到普通用户下突然发现"><a href="#登录到普通用户下突然发现" class="headerlink" title="登录到普通用户下突然发现"></a>登录到普通用户下突然发现</h3><h3 id="bash-4-2"><a href="#bash-4-2" class="headerlink" title="-bash-4.2$"></a>-bash-4.2$</h3><h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><p><img src="%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612274535.png" alt="1558612274535"></p>
 <p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558612288855.png" alt="1558612288855"></p>
 <h2 id="五-用户管理的命令"><a href="#五-用户管理的命令" class="headerlink" title="五.用户管理的命令"></a>五.用户管理的命令</h2><h3 id="1-用户相关命令："><a href="#1-用户相关命令：" class="headerlink" title="1.用户相关命令："></a>1.用户相关命令：</h3><h4 id="1-1-useradd：useradd-添加用户"><a href="#1-1-useradd：useradd-添加用户" class="headerlink" title="1.1.useradd：useradd 添加用户"></a>1.1.useradd：useradd 添加用户</h4><p>​    -u 指定UID<br>​    -s 指定登录shell<br>​        /bin/bash<br>​        /bin/nologin<br>​    -g 指定GID，用户组<br>​    -M  不创建家目录</p>
 <p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1558618154194.png" alt="1558618154194"></p>
@@ -651,7 +651,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -662,7 +662,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

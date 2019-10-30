@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试题,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="跳槽吧！Linux运维加薪面试题">
+<meta name="keywords" content="面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux运维面试题">
+<meta property="og:url" content="https://gry.github.io/2019/09/09/chkconfig_345_85_15/index.html">
+<meta property="og:site_name" content="GRY的博客">
+<meta property="og:description" content="跳槽吧！Linux运维加薪面试题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-09T02:58:31.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux运维面试题">
+<meta name="twitter:description" content="跳槽吧！Linux运维加薪面试题">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gry.github.io/2019/09/09/chkconfig_345_85_15/">
+
+
+
+
+
+  <title>Linux运维面试题 | GRY的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GRY的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gry.github.io/2019/09/09/chkconfig_345_85_15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="葛任远">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GRY的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux运维面试题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-09T10:01:24+08:00">
+                2019-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试题/" itemprop="url" rel="index">
+                    <span itemprop="name">面试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>跳槽吧！Linux运维加薪面试题</p>
+<a id="more"></a>
+
+<p>跳槽吧！Linux运维加薪面试题<br>1、什么是运维？什么是游戏运维？</p>
+<p>1）运维是指大型组织已经建立好的网络软硬件的维护，就是要保证业务的上线与运作的正常，<br>在他运转的过程中，对他进行维护，他集合了网络、系统、数据库、开发、安全、监控于一身的技术<br>运维又包括很多种，有DBA运维、网站运维、虚拟化运维、监控运维、游戏运维等等</p>
+<p>2）游戏运维又有分工，分为开发运维、应用运维（业务运维）和系统运维<br>开发运维：是给应用运维开发运维工具和运维平台的<br>应用运维：是给业务上线、维护和做故障排除的，用开发运维开发出来的工具给业务上线、维护、做故障排查<br>系统运维：是给应用运维提供业务上的基础设施，比如：系统、网络、监控、硬件等等</p>
+<p>总结：开发运维和系统运维给应用运维提供了“工具”和“基础设施”上的支撑<br>开发运维、应用运维和系统运维他们的工作是环环相扣的</p>
+<p>2、在工作中，运维人员经常需要跟运营人员打交道，请问运营人员是做什么工作的？<br>游戏运营要做的一个事情除了协调工作以外<br>还需要与各平台沟通，做好开服的时间、开服数、用户导量、活动等计划</p>
+<p>3、现在给你三百台服务器，你怎么对他们进行管理？<br>管理3百台服务器的方式：<br>1）设定跳板机，使用统一账号登录，便于安全与登录的考量。<br>2）使用salt、ansiable、puppet进行系统的统一调度与配置的统一管理。<br>3）建立简单的服务器的系统、配置、应用的cmdb信息管理。便于查阅每台服务器上的各种信息记录。</p>
+<p>4、简述raid0 raid1 raid5 三种工作模式的工作原理及特点<br>RAID，可以把硬盘整合成一个大磁盘，还可以在大磁盘上再分区，放数据<br>还有一个大功能，多块盘放在一起可以有冗余（备份）<br>RAID整合方式有很多，常用的：0 1 5 10</p>
+<p>RAID 0，可以是一块盘和N个盘组合<br>其优点读写快，是RAID中最好的<br>缺点：没有冗余，一块坏了数据就全没有了</p>
+<p>RAID 1，只能2块盘，盘的大小可以不一样，以小的为准<br>10G+10G只有10G，另一个做备份。它有100%的冗余，缺点：浪费资源，成本高</p>
+<p>RAID 5 ，3块盘，容量计算10*（n-1）,损失一块盘<br>特点，读写性能一般，读还好一点，写不好</p>
+<p>冗余从好到坏：RAID1 RAID10 RAID 5 RAID0<br>性能从好到坏：RAID0 RAID10 RAID5 RAID1<br>成本从低到高：RAID0 RAID5 RAID1 RAID10</p>
+<p>单台服务器：很重要盘不多，系统盘，RAID1<br>数据库服务器：主库：RAID10 从库 RAID5RAID0（为了维护成本，RAID10）<br>WEB服务器，如果没有太多的数据的话，RAID5,RAID0（单盘）<br>有多台，监控、应用服务器，RAID0 RAID5</p>
+<p>我们会根据数据的存储和访问的需求，去匹配对应的RAID级别</p>
+<p>5、LVS、Nginx、HAproxy有什么区别？工作中你怎么选择？<br>LVS：是基于四层的转发<br>HAproxy：是基于四层和七层的转发，是专业的代理服务器<br>Nginx：是WEB服务器，缓存服务器，又是反向代理服务器，可以做七层的转发</p>
+<p>区别：LVS由于是基于四层的转发所以只能做端口的转发<br>而基于URL的、基于目录的这种转发LVS就做不了</p>
+<p>工作选择：</p>
+<p>HAproxy和Nginx由于可以做七层的转发，所以URL和目录的转发都可以做<br>在很大并发量的时候我们就要选择LVS，像中小型公司的话并发量没那么大<br>选择HAproxy或者Nginx足已，由于HAproxy由是专业的代理服务器<br>配置简单，所以中小型企业推荐使用HAproxy</p>
+<p>6、Squid、Varinsh和Nginx有什么区别，工作中你怎么选择？<br>Squid、Varinsh和Nginx都是代理服务器</p>
+<p>什么是代理服务器：<br>能当替用户去访问公网，并且能把访问到的数据缓存到服务器本地，等用户下次再访问相同的资<br>源的时候，代理服务器直接从本地回应给用户，当本地没有的时候，我代替你去访问公网，我接<br>收你的请求，我先在我自已的本地缓存找，如果我本地缓存有，我直接从我本地的缓存里回复你<br>如果我在我本地没有找到你要访问的缓存的数据，那么代理服务器就会代替你去访问公网</p>
+<p>区别：<br>1）Nginx本来是反向代理/web服务器，用了插件可以做做这个副业<br>但是本身不支持特性挺多，只能缓存静态文件<br>2）从这些功能上。varnish和squid是专业的cache服务，而nginx这些是第三方模块完成<br>3）varnish本身的技术上优势要高于squid，它采用了可视化页面缓存技术</p>
+<p>在内存的利用上，Varnish比Squid具有优势，性能要比Squid高。<br>还有强大的通过Varnish管理端口，可以使用正则表达式快速、批量地清除部分缓存<br>它是内存缓存，速度一流，但是内存缓存也限制了其容量，缓存页面和图片一般是挺好的<br>4）squid的优势在于完整的庞大的cache技术资料，和很多的应用生产环境</p>
+<p>工作中选择：<br>要做cache服务的话，我们肯定是要选择专业的cache服务，优先选择squid或者varnish。</p>
+<p>7、Tomcat和Resin有什么区别，工作中你怎么选择？<br>区别：Tomcat用户数多，可参考文档多，Resin用户数少，可考虑文档少<br>最主要区别则是Tomcat是标准的java容器，不过性能方面比resin的要差一些<br>但稳定性和java程序的兼容性，应该是比resin的要好</p>
+<p>工作中选择：现在大公司都是用resin，追求性能；而中小型公司都是用Tomcat，追求稳定和程序的兼容</p>
+<p>8、什么是中间件？什么是jdk？<br>中间件介绍：<br>中间件是一种独立的系统软件或服务程序，分布式应用软件借助这种软件在不同的技术之间共享资源<br>中间件位于客户机/ 服务器的操作系统之上，管理计算机资源和网络通讯<br>是连接两个独立应用程序或独立系统的软件。相连接的系统，即使它们具有不同的接口</p>
+<p>但通过中间件相互之间仍能交换信息。执行中间件的一个关键途径是信息传递<br>通过中间件，应用程序可以工作于多平台或OS环境。</p>
+<p>jdk：jdk是Java的开发工具包<br>它是一种用于构建在 Java 平台上发布的应用程序、applet 和组件的开发环境</p>
+<p>9、讲述一下Tomcat8005、8009、8080三个端口的含义？<br>8005==》 关闭时使用<br>8009==》 为AJP端口，即容器使用，如Apache能通过AJP协议访问Tomcat的8009端口<br>8080==》 一般应用使用</p>
+<p>10、什么叫CDN？</p>
+<p>即内容分发网络</p>
+<p>其目的是通过在现有的Internet中增加一层新的网络架构，将网站的内容发布到<br>最接近用户的网络边缘，使用户可就近取得所需的内容，提高用户访问网站的速度</p>
+<p>11、什么叫网站灰度发布？<br>灰度发布是指在黑与白之间，能够平滑过渡的一种发布方式<br>AB test就是一种灰度发布方式，让一部用户继续用A，一部分用户开始用B<br>如果用户对B没有什么反对意见，那么逐步扩大范围，把所有用户都迁移到B上面 来<br>灰度发布可以保证整体系统的稳定，在初始灰度的时候就可以发现、调整问题，以保证其影响度</p>
+<p>12、简述DNS进行域名解析的过程？<br>用户要访问<a href="http://www.baidu.com，会先找本机的host文件，再找本地设置的DNS服务器，如果也没有的话，" target="_blank" rel="noopener">www.baidu.com，会先找本机的host文件，再找本地设置的DNS服务器，如果也没有的话，</a><br>就去网络中找根服务器，根服务器反馈结果，说只能提供一级域名服务器.cn，就去找一级域名服务器，<br>一级域名服务器说只能提供二级域名服务器.com.cn,就去找二级域名服务器，<br>二级域服务器只能提供三级域名服务器.baidu.com.cn，就去找三级域名服务器，<br>三级域名服务器正好有这个网站<a href="http://www.baidu.com，然后发给请求的服务器，保存一份之后，再发给客户端" target="_blank" rel="noopener">www.baidu.com，然后发给请求的服务器，保存一份之后，再发给客户端</a></p>
+<p>13、RabbitMQ是什么东西？<br>RabbitMQ也就是消息队列中间件，消息中间件是在消息的传息过程中保存消息的容器<br>消息中间件再将消息从它的源中到它的目标中标时充当中间人的作用<br>队列的主要目的是提供路由并保证消息的传递；如果发送消息时接收者不可用<br>消息队列不会保留消息，直到可以成功地传递为止，当然，消息队列保存消息也是有期限地</p>
+<p>14、讲一下Keepalived的工作原理？<br>在一个虚拟路由器中，只有作为MASTER的VRRP路由器会一直发送VRRP通告信息,<br>BACKUP不会抢占MASTER，除非它的优先级更高。当MASTER不可用时(BACKUP收不到通告信息)<br>多台BACKUP中优先级最高的这台会被抢占为MASTER。这种抢占是非常快速的(&lt;1s)，以保证服务的连续性<br>由于安全性考虑，VRRP包使用了加密协议进行加密。BACKUP不会发送通告信息，只会接收通告信息</p>
+<p>15、讲述一下LVS三种模式的工作过程？<br>LVS 有三种负载均衡的模式，分别是VS/NAT（nat 模式） VS/DR(路由模式) VS/TUN（隧道模式）</p>
+<p>一、NAT模式（VS-NAT）<br>原理：就是把客户端发来的数据包的IP头的目的地址，在负载均衡器上换成其中一台RS的IP地址<br>并发至此RS来处理,RS处理完后把数据交给负载均衡器,负载均衡器再把数据包原IP地址改为自己的IP<br>将目的地址改为客户端IP地址即可期间,无论是进来的流量,还是出去的流量,都必须经过负载均衡器<br>优点：集群中的物理服务器可以使用任何支持TCP/IP操作系统，只有负载均衡器需要一个合法的IP地址<br>缺点：扩展性有限。当服务器节点（普通PC服务器）增长过多时,负载均衡器将成为整个系统的瓶颈<br>因为所有的请求包和应答包的流向都经过负载均衡器。当服务器节点过多时<br>大量的数据包都交汇在负载均衡器那，速度就会变慢！</p>
+<p>二、IP隧道模式（VS-TUN）<br>原理：首先要知道，互联网上的大多Internet服务的请求包很短小，而应答包通常很大<br>那么隧道模式就是，把客户端发来的数据包，封装一个新的IP头标记(仅目的IP)发给RS<br>RS收到后,先把数据包的头解开,还原数据包,处理后,直接返回给客户端,不需要再经过<br>负载均衡器。注意,由于RS需要对负载均衡器发过来的数据包进行还原,所以说必须支持<br>IPTUNNEL协议，所以,在RS的内核中,必须编译支持IPTUNNEL这个选项<br>优点：负载均衡器只负责将请求包分发给后端节点服务器，而RS将应答包直接发给用户<br>所以，减少了负载均衡器的大量数据流动，负载均衡器不再是系统的瓶颈，就能处理很巨大的请求量<br>这种方式，一台负载均衡器能够为很多RS进行分发。而且跑在公网上就能进行不同地域的分发。<br>缺点：隧道模式的RS节点需要合法IP，这种方式需要所有的服务器支持”IP Tunneling”<br>(IP Encapsulation)协议，服务器可能只局限在部分Linux系统上</p>
+<p>三、直接路由模式（VS-DR）<br>原理：负载均衡器和RS都使用同一个IP对外服务但只有DR对ARP请求进行响应<br>所有RS对本身这个IP的ARP请求保持静默也就是说,网关会把对这个服务IP的请求全部定向给DR<br>而DR收到数据包后根据调度算法,找出对应的RS,把目的MAC地址改为RS的MAC（因为IP一致）<br>并将请求分发给这台RS这时RS收到这个数据包,处理完成之后，由于IP一致，可以直接将数据返给客户<br>则等于直接从客户端收到这个数据包无异,处理后直接返回给客户端<br>由于负载均衡器要对二层包头进行改换,所以负载均衡器和RS之间必须在一个广播域<br>也可以简单的理解为在同一台交换机上<br>优点：和TUN（隧道模式）一样，负载均衡器也只是分发请求，应答包通过单独的路由方法返回给客户端<br>与VS-TUN相比，VS-DR这种实现方式不需要隧道结构，因此可以使用大多数操作系统做为物理服务器。<br>缺点：（不能说缺点，只能说是不足）要求负载均衡器的网卡必须与物理网卡在一个物理段上。</p>
+<p>16、mysql的innodb如何定位锁问题，mysql如何减少主从复制延迟？<br>mysql的innodb如何定位锁问题:<br>在使用 show engine innodb status检查引擎状态时，发现了死锁问题<br>在5.5中，information_schema 库中增加了三个关于锁的表（MEMORY引擎）<br>innodb_trx ## 当前运行的所有事务<br>innodb_locks ## 当前出现的锁<br>innodb_lock_waits ## 锁等待的对应关系</p>
+<p>mysql如何减少主从复制延迟:<br>如果延迟比较大，就先确认以下几个因素：</p>
+<p>从库硬件比主库差，导致复制延迟</p>
+<p>主从复制单线程，如果主库写并发太大，来不及传送到从库<br>就会导致延迟。更高版本的mysql可以支持多线程复制</p>
+<p>慢SQL语句过多</p>
+<p>网络延迟</p>
+<p>master负载<br>主库读写压力大，导致复制延迟，架构的前端要加buffer及缓存层</p>
+<p>slave负载<br>一般的做法是，使用多台slave来分摊读请求，再从这些slave中取一台专用的服务器</p>
+<p>只作为备份用，不进行其他任何操作.另外， 2个可以减少延迟的参数:<br>–slave-net-timeout=seconds 单位为秒 默认设置为 3600秒</p>
+<p>参数含义：当slave从主数据库读取log数据失败后，等待多久重新建立连接并获取数据</p>
+<p>–master-connect-retry=seconds 单位为秒 默认设置为 60秒</p>
+<p>参数含义：当重新建立主从连接时，如果连接建立失败，间隔多久后重试</p>
+<p>通常配置以上2个参数可以减少网络问题导致的主从数据同步延迟</p>
+<p>MySQL数据库主从同步延迟解决方案<br>最简单的减少slave同步延时的方案就是在架构上做优化，尽量让主库的DDL快速执行<br>还有就是主库是写，对数据安全性较高，比如sync_binlog=1，innodb_flush_log_at_trx_commit<br>= 1 之类的设置，而slave则不需要这么高的数据安全，完全可以讲sync_binlog设置为0或者关闭binlog<br>innodb_flushlog也可以设置为0来提高sql的执行效率。另外就是使用比主库更好的硬件设备作为slave</p>
+<p>17、如何重置mysql root密码？</p>
+<p>一、 在已知MYSQL数据库的ROOT用户密码的情况下，修改密码的方法：<br>1、 在SHELL环境下，使用mysqladmin命令设置：<br>mysqladmin –u root –p password “新密码” 回车后要求输入旧密码</p>
+<p>2、 在mysql&gt;环境中,使用update命令，直接更新mysql库user表的数据：<br>Update mysql.user set password=password(‘新密码’) where user=’root’;<br>flush privileges;<br>注意：mysql语句要以分号”；”结束</p>
+<p>3、 在mysql&gt;环境中，使用grant命令，修改root用户的授权权限。<br>grant all on . to root@’localhost’ identified by ‘新密码’；</p>
+<p>二、 如查忘记了mysql数据库的ROOT用户的密码，又如何做呢？方法如下：<br>1、 关闭当前运行的mysqld服务程序：service mysqld stop（要先将mysqld添加为系统服务）<br>2、 使用mysqld_safe脚本以安全模式（不加载授权表）启动mysqld 服务<br>/usr/local/mysql/bin/mysqld_safe –skip-grant-table &amp;<br>3、 使用空密码的root用户登录数据库，重新设置ROOT用户的密码<br>＃mysql -u root<br>Mysql&gt; Update mysql.user set password=password(‘新密码’) where user=’root’;<br>Mysql&gt; flush privileges;</p>
+<p>18、lvs/nginx/haproxy优缺点<br>Nginx的优点是：<br>1、工作在网络的7层之上，可以针对http应用做一些分流的策略，比如针对域名、目录结构<br>它的正则规则比HAProxy更为强大和灵活，这也是它目前广泛流行的主要原因之一<br>Nginx单凭这点可利用的场合就远多于LVS了。</p>
+<p>2、Nginx对网络稳定性的依赖非常小，理论上能ping通就就能进行负载功能，这个也是它的优势之一<br>相反LVS对网络稳定性依赖比较大，这点本人深有体会；</p>
+<p>3、Nginx安装和配置比较简单，测试起来比较方便，它基本能把错误用日志打印出来<br>LVS的配置、测试就要花比较长的时间了，LVS对网络依赖比较大。</p>
+<p>4、可以承担高负载压力且稳定，在硬件不差的情况下一般能支撑几万次的并发量，负载度比LVS相对小些。</p>
+<p>5、Nginx可以通过端口检测到服务器内部的故障，比如根据服务器处理网页返回的状态码、超时等等，并且会把返回错误的请求重新提交到另一个节点，不过其中缺点就是不支持url来检测。比如用户正在上传一个文件，而处理该上传的节点刚好在上传过程中出现故障，Nginx会把上传切到另一台服务器重新处理，而LVS就直接断掉了<br>如果是上传一个很大的文件或者很重要的文件的话，用户可能会因此而不满。</p>
+<p>6、Nginx不仅仅是一款优秀的负载均衡器/反向代理软件，它同时也是功能强大的Web应用服务器<br>LNMP也是近几年非常流行的web架构，在高流量的环境中稳定性也很好。</p>
+<p>7、Nginx现在作为Web反向加速缓存越来越成熟了，速度比传统的Squid服务器更快，可考虑用其作为反向代理加速器</p>
+<p>8、Nginx可作为中层反向代理使用，这一层面Nginx基本上无对手，唯一可以对比Nginx的就只有lighttpd了<br>不过lighttpd目前还没有做到Nginx完全的功能，配置也不那么清晰易读，社区资料也远远没Nginx活跃</p>
+<p>9、Nginx也可作为静态网页和图片服务器，这方面的性能也无对手。还有Nginx社区非常活跃，第三方模块也很多</p>
+<p>Nginx的缺点是：<br>1、Nginx仅能支持http、https和Email协议，这样就在适用范围上面小些，这个是它的缺点<br>2、对后端服务器的健康检查，只支持通过端口来检测，不支持通过url来检测<br>不支持Session的直接保持，但能通过ip_hash来解决</p>
+<p>LVS：使用Linux内核集群实现一个高性能、高可用的负载均衡服务器<br>它具有很好的可伸缩性（Scalability)、可靠性（Reliability)和可管理性（Manageability)</p>
+<p>LVS的优点是：<br>1、抗负载能力强、是工作在网络4层之上仅作分发之用，没有流量的产生<br>这个特点也决定了它在负载均衡软件里的性能最强的，对内存和cpu资源消耗比较低</p>
+<p>2、配置性比较低，这是一个缺点也是一个优点，因为没有可太多配置的东西<br>所以并不需要太多接触，大大减少了人为出错的几率</p>
+<p>3、工作稳定，因为其本身抗负载能力很强，自身有完整的双机热备方案<br>如LVS+Keepalived，不过我们在项目实施中用得最多的还是LVS/DR+Keepalived</p>
+<p>4、无流量，LVS只分发请求，而流量并不从它本身出去，这点保证了均衡器IO的性能不会收到大流量的影响。<br>5、应用范围较广，因为LVS工作在4层，所以它几乎可对所有应用做负载均衡，包括http、数据库、在线聊天室等</p>
+<p>LVS的缺点是：<br>1、软件本身不支持正则表达式处理，不能做动静分离<br>而现在许多网站在这方面都有较强的需求，这个是Nginx/HAProxy+Keepalived的优势所在<br>2、如果是网站应用比较庞大的话，LVS/DR+Keepalived实施起来就比较复杂了<br>特别后面有Windows Server的机器的话，如果实施及配置还有维护过程就比较复杂了<br>相对而言，Nginx/HAProxy+Keepalived就简单多了。</p>
+<p>HAProxy的特点是：<br>1、HAProxy也是支持虚拟主机的。<br>2、HAProxy的优点能够补充Nginx的一些缺点，比如支持Session的保持，Cookie的引导<br>同时支持通过获取指定的url来检测后端服务器的状态</p>
+<p>3、HAProxy跟LVS类似，本身就只是一款负载均衡软件<br>单纯从效率上来讲HAProxy会比Nginx有更出色的负载均衡速度，在并发处理上也是优于Nginx的</p>
+<p>4、HAProxy支持TCP协议的负载均衡转发，可以对MySQL读进行负载均衡<br>对后端的MySQL节点进行检测和负载均衡，大家可以用LVS+Keepalived对MySQL主从做负载均衡</p>
+<p>5、HAProxy负载均衡策略非常多，HAProxy的负载均衡算法现在具体有如下8种：<br>①roundrobin，表示简单的轮询，这个不多说，这个是负载均衡基本都具备的；<br>② static-rr，表示根据权重，建议关注；<br>③leastconn，表示最少连接者先处理，建议关注；<br>④ source，表示根据请求源IP，这个跟Nginx的IP_hash机制类似<br>我们用其作为解决session问题的一种方法，建议关注；<br>⑤ri，表示根据请求的URI；<br>⑥rl_param，表示根据请求的URl参数’balance url_param’ requires an URL parameter name；<br>⑦hdr(name)，表示根据HTTP请求头来锁定每一次HTTP请求；<br>⑧rdp-cookie(name)，表示根据据cookie(name)来锁定并哈希每一次TCP请求。</p>
+<p>19、mysql数据备份工具<br>mysqldump工具<br>mysqldump是mysql自带的备份工具，目录在bin目录下面：/usr/local/mysql/bin/mysqldump<br>支持基于innodb的热备份，但是由于是逻辑备份，所以速度不是很快，适合备份数据比较小的场景<br>Mysqldump完全备份+二进制日志可以实现基于时间点的恢复。</p>
+<p>基于LVM快照备份<br>在物理备份中，有基于文件系统的物理备份（LVM的快照），也可以直接用tar之类的命令对整个数据库目录<br>进行打包备份，但是这些只能进行泠备份，不同的存储引擎备份的也不一样，myisam自动备份到表级别<br>而innodb不开启独立表空间的话只能备份整个数据库。</p>
+<p>tar包备份</p>
+<p>percona提供的xtrabackup工具<br>支持innodb的物理热备份，支持完全备份，增量备份，而且速度非常快，支持innodb存储引起的数据在不同<br>数据库之间迁移，支持复制模式下的从机备份恢复备份恢复，为了让xtrabackup支持更多的功能扩展<br>可以设立独立表空间，打开 innodb_file_per_table功能，启用之后可以支持单独的表备份</p>
+<p>20、keepalive的工作原理和如何做到健康检查<br>keepalived是以VRRP协议为实现基础的，VRRP全称Virtual Router Redundancy Protocol，即虚拟路由冗余协议。<br>虚拟路由冗余协议，可以认为是实现路由器高可用的协议，即将N台提供相同功能的路由器组成一个路由器组<br>这个组里面有一个master和多个backup，master上面有一个对外提供服务的vip（该路由器所在局域网内<br>其他机器的默认路由为该vip），master会发组播，当backup收不到vrrp包时就认为master宕掉了<br>这时就需要根据VRRP的优先级来选举一个backup当master。这样就可以保证路由器的高可用了</p>
+<p>keepalived主要有三个模块，分别是core、check和vrrp。core模块为keepalived的核心，负责主进程的启动、维护<br>及全局配置文件的加载和解析。check负责健康检查，包括常见的各种检查方式，vrrp模块是来实现VRRP协议的</p>
+<p>Keepalived健康检查方式配置<br>HTTP_GET|SSL_GET<br>HTTP_GET | SSL_GET<br>{<br>url {<br>path /# HTTP/SSL 检查的url可以是多个<br>digest # HTTP/SSL 检查后的摘要信息用工具genhash生成<br>status_code 200# HTTP/SSL 检查返回的状态码<br>}<br>connect_port 80 # 连接端口<br>bindto<br>connect_timeout 3 # 连接超时时间<br>nb_get_retry 3 # 重连次数<br>delay_before_retry 2 #连接间隔时间<br>}</p>
+<p>21、统计ip访问情况，要求分析nginx访问日志，找出访问页面数量在前十位的ip<br>cat access.log | awk ‘{print $1}’ | uniq -c | sort -rn | head -10</p>
+<p>22、使用tcpdump监听主机为192.168.1.1，tcp端口为80的数据，同时将输出结果保存输出到tcpdump.log<br>tcpdump ‘host 192.168.1.1 and port 80’ &gt; tcpdump.log</p>
+<p>23、如何将本地80 端口的请求转发到8080 端口，当前主机IP 为192.168.2.1<br>iptables -A PREROUTING -d 192.168.2.1 -p tcp -m tcp -dport 80 -j DNAT-to-destination 192.168.2.1:8080</p>
+<p>24、简述raid0 raid1 raid5 三种工作模式的工作原理及特点<br>RAID 0：带区卷，连续以位或字节为单位分割数据，并行读/写于多个磁盘上，因此具有很高的数据传输率<br>但它没有数据冗余，RAID 0 只是单纯地提高性能，并没有为数据的可靠性提供保证<br>而且其中的一个磁盘失效将影响到所有数据。因此，RAID 0 不能应用于数据安全性要求高的场合</p>
+<p>RAID 1：镜像卷，它是通过磁盘数据镜像实现数据冗余，在成对的独立磁盘上产生互为备份的数据<br>不能提升写数据效率。当原始数据繁忙时，可直接从镜像拷贝中读取数据，因此RAID1 可以提高读取性能<br>RAID 1 是磁盘阵列中单位成本最高的，镜像卷可用容量为总容量的1/2，但提供了很高的数据安全性和可用性<br>当一个磁盘失效时，系统可以自动切换到镜像磁盘上读写，而不需要重组失效的数据</p>
+<p>RAID5：至少由3块硬盘组成，分布式奇偶校验的独立磁盘结构，它的奇偶校验码存在于所有磁盘上<br>任何一个硬盘损坏，都可以根据其它硬盘上的校验位来重建损坏的数据（最多允许1块硬盘损坏）<br>所以raid5可以实现数据冗余，确保数据的安全性，同时raid5也可以提升数据的读写性能</p>
+<p>25、你对现在运维工程师的理解和以及对其工作的认识<br>运维工程师在公司当中责任重大，需要保证时刻为公司及客户提供最高、最快、最稳定、最安全的服务<br>运维工程师的一个小小的失误，很有可能会对公司及客户造成重大损失<br>因此运维工程师的工作需要严谨及富有创新精神</p>
+<p>26、实时抓取并显示当前系统中tcp 80端口的网络数据信息，请写出完整操作命令<br>tcpdump -nn tcp port 80</p>
+<p>28、Linux系统中病毒怎么解决<br>1）最简单有效的方法就是重装系统<br>2）要查的话就是找到病毒文件然后删除<br>中毒之后一般机器cpu、内存使用率会比较高<br>机器向外发包等异常情况，排查方法简单介绍下</p>
+<p>top 命令找到cpu使用率最高的进程<br>一般病毒文件命名都比较乱，可以用 ps aux 找到病毒文件位置<br>rm -f 命令删除病毒文件<br>检查计划任务、开机启动项和病毒文件目录有无其他可以文件等</p>
+<p>3）由于即使删除病毒文件不排除有潜伏病毒，所以最好是把机器备份数据之后重装一下</p>
+<p>29、发现一个病毒文件你删了他又自动创建怎么解决<br>公司的内网某台linux服务器流量莫名其妙的剧增,用iftop查看有连接外网的情况<br>针对这种情况一般重点查看netstat连接的外网ip和端口。</p>
+<p>用lsof -p pid可以查看到具体是那些进程，哪些文件<br>经查勘发现/root下有相关的配置conf.n hhe两个可疑文件，rm -rf后不到一分钟就自动生成了<br>由此推断是某个母进程产生的这些文件。所以找到母进程就是找到罪魁祸首</p>
+<p>查杀病毒最好断掉外网访问，还好是内网服务器，可以通过内网访问<br>断了内网，病毒就失去外联的能力，杀掉它就容易的多<br>怎么找到呢，找了半天也没有看到蛛丝马迹，没办法只有ps axu一个个排查<br>方法是查看可以的用户和和系统相似而又不是的冒牌货，果然，看到了如下进程可疑</p>
+<p>看不到图片就是/usr/bin/.sshd<br>于是我杀掉所有.sshd相关的进程，然后直接删掉.sshd这个可执行文件<br>然后才删掉了文章开头提到的自动复活的文件</p>
+<p>总结一下，遇到这种问题，如果不是太严重，尽量不要重装系统<br>一般就是先断外网，然后利用iftop,ps,netstat,chattr,lsof,pstree这些工具顺藤摸瓜<br>一般都能找到元凶。但是如果遇到诸如此类的问题<br>/boot/efi/EFI/redhat/grub.efi: Heuristics.Broken.Executable FOUND，个人觉得就要重装系统了</p>
+<p>30、说说TCP/IP的七层模型<br>应用层 (Application)：<br>网络服务与最终用户的一个接口。<br>协议有：HTTP FTP TFTP SMTP SNMP DNS TELNET HTTPS POP3 DHCP</p>
+<p>表示层（Presentation Layer）：<br>数据的表示、安全、压缩。（在五层模型里面已经合并到了应用层）<br>格式有，JPEG、ASCll、DECOIC、加密格式等</p>
+<p>会话层（Session Layer）：<br>建立、管理、终止会话。（在五层模型里面已经合并到了应用层）<br>对应主机进程，指本地主机与远程主机正在进行的会话</p>
+<p>传输层 (Transport)：<br>定义传输数据的协议端口号，以及流控和差错校验。<br>协议有：TCP UDP，数据包一旦离开网卡即进入网络传输层</p>
+<p>网络层 (Network)：<br>进行逻辑地址寻址，实现不同网络之间的路径选择。<br>协议有：ICMP IGMP IP（IPV4 IPV6） ARP RARP</p>
+<p>数据链路层 (Link)：<br>建立逻辑连接、进行硬件地址寻址、差错校验等功能。（由底层网络定义协议）<br>将比特组合成字节进而组合成帧，用MAC地址访问介质，错误发现但不能纠正</p>
+<p>物理层（Physical Layer）：</p>
+<p>是计算机网络OSI模型中最低的一层<br>物理层规定:为传输数据所需要的物理链路创建、维持、拆除<br>而提供具有机械的，电子的，功能的和规范的特性</p>
+<p>简单的说，物理层确保原始的数据可在各种物理媒体上传输。局域网与广域网皆属第1、2层<br>物理层是OSI的第一层，它虽然处于最底层，却是整个开放系统的基础<br>物理层为设备之间的数据通信提供传输媒体及互连设备，为数据传输提供可靠的环境<br>如果您想要用尽量少的词来记住这个第一层，那就是“信号和介质”</p>
+<p>31、你常用的Nginx模块，用来做什么<br>rewrite模块，实现重写功能<br>access模块：来源控制<br>ssl模块：安全加密<br>ngx_http_gzip_module：网络传输压缩模块<br>ngx_http_proxy_module 模块实现代理<br>ngx_http_upstream_module模块实现定义后端服务器列表<br>ngx_cache_purge实现缓存清除功能</p>
+<p>32、请列出你了解的web服务器负载架构<br>Nginx<br>Haproxy<br>Keepalived<br>LVS</p>
+<p>33、查看http的并发请求数与其TCP连接状态<br>netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’</p>
+<p>还有ulimit -n 查看linux系统打开最大的文件描述符，这里默认1024<br>不修改这里web服务器修改再大也没用，若要用就修改很几个办法，这里说其中一个：<br>修改/etc/security/limits.conf</p>
+<p>soft nofile 10240</p>
+<p>hard nofile 10240<br>重启后生效</p>
+<p>34、用tcpdump嗅探80端口的访问看看谁最高<br>tcpdump -i eth0 -tnn dst port 80 -c 1000 | awk -F”.” ‘{print $1″.”$2″.”$3″.”$4}’| sort | uniq -c | sort -nr |head -20</p>
+<p>35、写一个脚本，实现判断192.168.1.0/24网络里，当前在线的IP有哪些，能ping通则认为在线</p>
+<p>!/bin/bash<br>for ip in seq 1 255<br>do<br>{<br>ping -c 1 192.168.1.$ip &gt; /dev/null 2&gt;&amp;1<br>if [ $? -eq 0 ]; then<br>echo 192.168.1.$ip UP<br>else<br>echo 192.168.1.$ip DOWN<br>fi<br>}&amp;<br>done<br>wait</p>
+<p>36、已知 apache 服务的访问日志按天记录在服务器本地目录/app/logs 下，由于磁盘空间紧张现在要求只能保留最近 7 天的访问日志！请问如何解决？请给出解决办法或配置或处理命令</p>
+<p>创建文件脚本：</p>
+<p>!/bin/bash<br>for n in seq 14<br>do<br>date -s “11/0$n/14”<br>touch access_www_(date +%F).log<br>done</p>
+<p>解决方法：</p>
+<p>pwd/application/logs<br>ll<br>-rw-r–r–. 1 root root 0 Jan 1 00:00 access_www_2015-01-01.log<br>-rw-r–r–. 1 root root 0 Jan 2 00:00 access_www_2015-01-02.log<br>-rw-r–r–. 1 root root 0 Jan 3 00:00 access_www_2015-01-03.log<br>-rw-r–r–. 1 root root 0 Jan 4 00:00 access_www_2015-01-04.log<br>-rw-r–r–. 1 root root 0 Jan 5 00:00 access_www_2015-01-05.log<br>-rw-r–r–. 1 root root 0 Jan 6 00:00 access_www_2015-01-06.log<br>-rw-r–r–. 1 root root 0 Jan 7 00:00 access_www_2015-01-07.log<br>-rw-r–r–. 1 root root 0 Jan 8 00:00 access_www_2015-01-08.log<br>-rw-r–r–. 1 root root 0 Jan 9 00:00 access_www_2015-01-09.log<br>-rw-r–r–. 1 root root 0 Jan 10 00:00 access_www_2015-01-10.log<br>-rw-r–r–. 1 root root 0 Jan 11 00:00 access_www_2015-01-11.log<br>-rw-r–r–. 1 root root 0 Jan 12 00:00 access_www_2015-01-12.log<br>-rw-r–r–. 1 root root 0 Jan 13 00:00 access_www_2015-01-13.log<br>-rw-r–r–. 1 root root 0 Jan 14 00:00 access_www_2015-01-14.log</p>
+<p>find /application/logs/ -type f -mtime +7 -name “*.log”|xargs rm –f<br>也可以使用-exec rm -f {} ;进行删除<br>ll<br>-rw-r–r–. 1 root root 0 Jan 7 00:00 access_www_2015-01-07.log<br>-rw-r–r–. 1 root root 0 Jan 8 00:00 access_www_2015-01-08.log<br>-rw-r–r–. 1 root root 0 Jan 9 00:00 access_www_2015-01-09.log<br>-rw-r–r–. 1 root root 0 Jan 10 00:00 access_www_2015-01-10.log<br>-rw-r–r–. 1 root root 0 Jan 11 00:00 access_www_2015-01-11.log<br>-rw-r–r–. 1 root root 0 Jan 12 00:00 access_www_2015-01-12.log<br>-rw-r–r–. 1 root root 0 Jan 13 00:00 access_www_2015-01-13.log<br>-rw-r–r–. 1 root root 0 Jan 14 00:00 access_www_2015-01-14.log</p>
+<p>37、如何优化 Linux系统（可以不说太具体）？<br>不用root，添加普通用户，通过sudo授权管理<br>更改默认的远程连接SSH服务端口及禁止root用户远程连接<br>定时自动更新服务器时间<br>配置国内yum源<br>关闭selinux及iptables（iptables工作场景如果有外网IP一定要打开，高并发除外）<br>调整文件描述符的数量<br>精简开机启动服务（crond rsyslog network sshd）<br>内核参数优化（/etc/sysctl.conf）<br>更改字符集，支持中文，但建议还是用英文字符集，防止乱码<br>锁定关键系统文件<br>清空/etc/issue，去除系统及内核版本登录前的屏幕显示</p>
+<p>38、请执行命令取出 linux 中 eth0 的 IP 地址(请用 cut，有能力者也可分别用 awk,sed 命令答)<br>cut方法1：</p>
+<p>ifconfig eth0|sed -n ‘2p’|cut -d “:” -f2|cut -d ” ” -f1<br>192.168.20.130<br>awk方法2：</p>
+<p>ifconfig eth0|awk ‘NR==2’|awk -F “:” ‘{print $2}’|awk ‘{print $1}’<br>192.168.20.130<br>awk多分隔符方法3：</p>
+<p>ifconfig eth0|awk ‘NR==2’|awk -F “[: ]+” ‘{print $4}’<br>192.168.20.130<br>sed方法4：</p>
+<p>ifconfig eth0|sed -n ‘/inet addr/p’|sed -r ‘s#^.ddr:(.)Bc.*$##g’<br>192.168.20.130</p>
+<p>39、请写出下面 linux SecureCRT 命令行快捷键命令的功能？<br>Ctrl + a<br>Ctrl + c<br>Ctrl + d<br>Ctrl + e<br>Ctrl + l<br>Ctrl + u<br>Ctrl + k<br>tab<br>Ctrl+shift+c<br>Ctrl+shift+v</p>
+<p>解答：<br>Ctrl + a —-&gt;光标移动到行首<br>Ctrl + e —-&gt;光标移动到行尾<br>Ctrl + c —-&gt;终止当前程序<br>Ctrl + d —-&gt;如果光标前有字符则删除，没有则退出当前中断<br>Ctrl + l —-&gt;清屏<br>Ctrl + u —-&gt;剪切光标以前的字符<br>Ctrl + k —-&gt;剪切光标以后的字符<br>Ctrl + y —-&gt;复制u/k的内容<br>Ctrl + r —-&gt;查找最近用过的命令<br>tab —-&gt;命令或路径补全<br>Ctrl+shift+c —-&gt;复制<br>Ctrl+shift+v —-&gt;粘贴</p>
+<p>40、每天晚上 12 点，打包站点目录/var/www/html 备份到/data 目录下（最好每次备份按时间生成不同的备份包）</p>
+<p>cat a.sh<br>/bin/bash<br>cd /var/www/ &amp;&amp; /bin/tar zcf /data/html-date +%m-%d%H.tar.gz html/</p>
+<p>crontab –e<br>00 00 * * * /bin/sh /root/a.sh</p>
+<p>1、Linux如何挂载windows下的共享目录？<br>mount.cifs //IP地址/server /mnt/server -o user=administrator,password=123456<br>linux 下的server需要自己手动建一个 后面的user与pass 是windows主机的账号和密码 注意空格 和逗号</p>
+<p>2、如何查看http的并发请求数与其TCP连接状态？<br>netstat -n | awk ‘/^tcp/ {++b[$NF]}’ END {for(a in b) print a,b[a]}’</p>
+<p>还有ulimit -n 查看linux系统打开最大的文件描述符，这里默认1024，不修改这里web服务器修改再大也没用。若要用就修改很几个办法，这里说其中一个：<br>修改/etc/security/limits.conf</p>
+<ul>
+<li>soft nofile 10240</li>
+<li>hard nofile 10240<br>重启后生效</li>
+</ul>
+<p>3、如何用tcpdump嗅探80端口的访问看看谁最高？<br>tcpdump -i eth0 -tnn dst port 80 -c 1000 | awk -F”.” ‘{print $1″.”$2″.”$3″.”$4″.”}’ | sort |uniq -c | sort -nr | head-5</p>
+<p>4、如何查看/var/log目录下的文件数？<br>ls /var/log/ -1R | grep “-” | wc -l</p>
+<p>5、如何查看Linux系统每个ip的连接数？<br>netstat -n | awk ‘/^tcp/ {print $5}’ | awk -F: ‘{print $1}’ | sort | uniq -c | sort -rn</p>
+<p>6、shell下生成32位随机密码<br>cat /dev/urandom | head -1 | md5sum | head -c 32 &gt;&gt; /pass</p>
+<p>7、统计出apache的access.log中访问量最多的5个ip<br>cat access.log | awk ‘{print $1}’ | sort | uniq -c | sort -n -r | head -5</p>
+<p>8、如何查看二进制文件的内容？<br>我们一般通过hexdump命令 来查看二进制文件的内容。<br>hexdump -C XXX(文件名) -C是参数 不同的参数有不同的意义<br>-C 是比较规范的 十六进制和ASCII码显示<br>-c 是单字节字符显示<br>-b 单字节八进制显示<br>-o 是双字节八进制显示<br>-d 是双字节十进制显示<br>-x 是双字节十六进制显示</p>
+<p>9、ps aux 中的VSZ代表什么意思，RSS代表什么意思？<br>VSZ:虚拟内存集,进程占用的虚拟内存空间<br>RSS:物理内存集,进程战用实际物理内存空间</p>
+<p>10、如何检测并修复/dev/hda5？<br>fsck用来检查和维护不一致的文件系统。若系统掉电或磁盘发生问题，可利用fsck命令对文件系统进行检查</p>
+<p>11、介绍下Linux系统的开机启动顺序<br>加载BIOS–&gt;读取MBR–&gt;Boot Loader–&gt;加载内核–&gt;用户层init一句inittab文件来设定系统运行的等级(一般3或者<br>5，3是多用户命令行，5是界面)–&gt;init进程执行rc.syninit–&gt;启动内核模块–&gt;执行不同级别运行的脚本程序–&gt;执行/etc/rc.d/rc.local(本地运行服务)–&gt;执行/bin/login,就可以登录了。</p>
+<p>12、符号链接与硬链接的区别<br>我们可以把符号链接，也就是软连接 当做是 windows系统里的 快捷方式。<br>硬链接 就好像是 又复制了一份，举例说明：<br>ln 3.txt 4.txt 这是硬链接，相当于复制，不可以跨分区，但修改3,4会跟着变，若删除3,4不受任何影响。<br>ln -s 3.txt 4.txt 这是软连接，相当于快捷方式。修改4,3也会跟着变，若删除3,4就坏掉了。不可以用了。</p>
+<p>13、保存当前磁盘分区的分区表<br>dd 命令是以个强大的命令，在复制的同时进行转换<br>dd if=/dev/sda of=./mbr.txt bs=1 count=512</p>
+<p>14、如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找？<br>以下操作全部在命令行状态操作，不要在编辑状态操作。<br>在文本里 移动到想要复制的行 按yy 想复制到哪就移动到哪，然后按P 就黏贴了<br>删除行 移动到改行 按dd<br>删除全部 dG 这里注意G一定要大写<br>按行查找 :90 这样就是找到第90行<br>按字母查找 /path 这样就是 找到path这个单词所在的位置，文本里可能存在多个,多次查找会显示在不同的位置。</p>
+<p>15、手动安装grub<br>grub-install /dev/sda</p>
+<p>16、修改内核参数<br>vi /etc/sysctl.conf 这里修改参数<br>sysctl -p 刷新后可用</p>
+<p>17、在1-39内取随机数<br>expr $[RANDOM%39] +1<br>RANDOM随机数<br>%39取余数范围0-38</p>
+<p>18、限制apache每秒新建连接数为1，峰值为3<br>每秒新建连接数 一般都是由防火墙来做，apache本身好像无法设置每秒新建连接数，只能设置最大连接：<br>iptables -A INPUT -d 172.16.100.1 -p tcp –dport 80 -m limit –limit 1/second -j ACCEPT</p>
+<p>19、FTP的主动模式和被动模式<br>FTP协议有两种工作方式：PORT方式和PASV方式，中文意思为主动式和被动式。</p>
+<p>PORT（主动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请 求，服务器接受连接，建立一条命令链路。当需要传送数据时，客户端在命令链路上用PORT 命令告诉服务器：“我打开了XX端口，你过来连接我”。于是服务器从20端口向客户端的 XX端口发送连接请求，建立一条数据链路来传送数据。</p>
+<p>PASV（被动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请 求，服务器接受连接，建立一条命令链路。当需要传送数据时，服务器在命令链路上用PASV 命令告诉客户端：“我打开了XX端口，你过来连接我”。于是客户端向服务器的XX端口 发送连接请求，建立一条数据链路来传送数据。<br>从上面可以看出，两种方式的命令链路连接方法是一样的，而数据链路的建立方法就完 全不同。</p>
+<p>20、显示/etc/inittab中以#开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行<br>grep “^#{1,}[^]” /etc/inittab</p>
+<p>21、显示/etc/inittab中包含了:一个数字:(即两个冒号中间一个数字)的行<br>grep “:[0-9]{1}:” /etc/inittab</p>
+<p>22、怎么把脚本添加到系统服务里，即用service来调用？<br>在脚本里加入</p>
+<p>#!/bin/bash<br> chkconfig: 345 85 15<br> description: httpd<br>然后保存<br>chkconfig httpd –add 创建系统服务<br>现在就可以使用service 来 start or restart</p>
+<p>23、写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符</p>
+<p>#!/bin/bash</p>
+<p>#description: useradd<br>for i in <code>seq -f”%02g” 1 20</code>;do<br>useradd user$i<br>echo “user$i-<code>echo $RANDOM|md5sum|cut -c 1-5</code>”|passwd –stdinuser$i &gt;/dev/null 2&gt;&amp;1<br>done</p>
+<p>24、写一个脚本，实现判断192.168.1.0/24网络里，当前在线的IP有哪些，能ping通则认为在线</p>
+<p>#!/bin/bash<br>for ip in <code>seq 1 255</code><br>do<br>ping -c 1 192.168.1.$ip &gt; /dev/null 2&gt;&amp;1<br>if [ $? -eq 0 ]; then<br>echo 192.168.1.$ip UP<br>else<br>echo 192.168.1.$ip DOWN<br>fi<br>}&amp;<br>done<br>wait</p>
+<p>25、写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本</p>
+<p>[root@localhost tmp]# cat checksh.sh</p>
+<p>#!/bin/bash<br>read -p “please input check script-&gt; ” file<br>if [ -f $file ]; then<br>sh -n $file &gt; /dev/null 2&gt;&amp;1<br>if [ $? -ne 0 ]; then<br>read -p “You input $file syntax error,[Type q to exit or Type vim to edit]” answer<br>case $answer in<br>q | Q)<br>exit 0<br>;;<br>vim )<br>vim $file<br>;;<br>*）<br>exit 0<br>;;<br>esac<br>fi<br>else<br>echo “$file not exist”<br>exit 1<br>fi</p>
+<p>26、写一个脚本，要求如何：</p>
+<p>创建一个函数，能接受两个参数：<br>1)第一个参数为URL，即可下载的文件；第二个参数为目录，即下载后保存的位置；<br>2)如果用户给的目录不存在，则提示用户是否创建；如果创建就继续执行，否则，函数返回一个51的错误值给调用脚本；<br>3)如果给的目录存在，则下载文件；下载命令执行结束后测试文件下载成功与否；如果成功，则返回0给调用脚本，否则，返回52给调用脚本；</p>
+<p>[root@localhost tmp]# cat downfile.sh</p>
+<p>#!/bin/bash<br>url=$1<br>dir=$2<br>download()<br>{<br>cd $dir &gt;&gt; /dev/null 2&gt;&amp;1<br>if [ $? -ne 0 ];then<br>read -p “$dir No such file or directory,create?(y/n)” answer<br>if [ “$answer” == “y” ];then<br>mkdir -p $dir<br>cd $dir<br>wget $url 1&gt; /dev/null 2&gt;&amp;1<br>else<br>return “51”<br>fi<br>fi<br>if [ $? -ne 0 ]; then<br>return “52”<br>fi<br>}<br>download $url $dir<br>echo $?</p>
+<p>27、写一个脚本，详细需求如下：</p>
+<p>1、创建一个函数，可以接受一个磁盘设备路径（如/dev/sdb）作为参数;在真正开始后面步骤之前提醒用户有危险，并让用户选择是否继续；而后将此磁盘设备上的所有分区清空（提示，使用命令dd if=/dev/zero of=/dev/sdb bs=512 count=1实现，注意其中的设备路径不要写错了；<br>如果此步骤失败，返回67给主程序；<br>接着在此磁盘设备上创建两个主分区，一个大小为100M，一个大小为1G；如果此步骤失败，返回68给主程序；<br>格式化此两分区，文件系统类型为ext3；如果此步骤失败，返回69给主程序；<br>如果上述过程都正常，返回0给主程序；</p>
+<p>2、调用此函数；并通过接收函数执行的返回值来判断其执行情况，并将信息显示出来；</p>
+<p>local Darray=(<code>ls /dev/sd[a-z]</code>)<br>for i in ${Darray};do<br>[[ “$i” == “$1” ]] &amp;&amp; Sd=$i &amp;&amp;break<br>done<br>else<br>return66<br>fi</p>
+<p>#当匹配成功，进入选择，告诉用户，是否继续，输错的话进入无限循环，当用户选择Y,则清空目标分区，且跳出while循环</p>
+<p>while :;do<br>read -p “Warning!!!This operation will clean $Sd data.Next=y,Quit=n [y|n]:” Choice<br>case $Choice in<br>y)<br>dd if=/dev/zero of=$Sd bs=512 count=1 &amp;&gt; /dev/null &amp;&amp;break || return 67 ;;<br>n)<br>exit 88 ;;<br>*)<br>echo “Invalid choice,please choice again.” ;;<br>esac<br>done</p>
+<p>#使用echo传递给fdisk进行分区，如果此命令失败，则跳转出去，错误值68，需要注意的是，有时候这个返回值很诡异，笔者之前成功与否都是返回的1，后来重启之后，就好了，如果慎重的话，可以对创建的分区，进行判断，不过就需要使用其他工具截取相关字段了，虽有些小麻烦，但无大碍</p>
+<p>echo-e “n\np\n1\n\n+100M\nn\np\n2\n\n+1024M\nw\n”|fdisk /dev/sdb&amp;&gt; /dev/null || || return 68</p>
+<p>#格式化之前，让内核重新读取磁盘分区表，值得注意的是，有的系统版本，使用partprobe无效，譬如笔者的环境是rhel5.8，而rhel6.0以后，这个命令就很危险了，而使用partx -a /dev/sdb则效果更好…此项需慎重，如果格式化失败，则告知把失败的分区定义成变量，且跳出函数，并带出错误值69</p>
+<p><code>partprobe</code><br>Part=<code>fdisk -l /dev/$Sd|tail -2|cut -d” ” -f1</code><br>for M in ${Part};do<br>mke2fs -j $M &amp;&gt; /dev/null &amp;&amp; ErrorPart=$M &amp;&amp;return 69<br>done<br>return 0<br>}</p>
+<p>#下面代码，调用函数，接收函数返回值，根据返回值进行判断哪里出错。</p>
+<p>Disk_Mod $1<br>Res=$?<br>[ $Res-eq 0 ] &amp;&amp; exit 0<br>[ $Res-eq 66 ] &amp;&amp; echo “Error! Invalid input.”<br>[ $Res-eq 67 ] &amp;&amp; echo “Error! Command -&gt; dd fdisk mke2fs</p>
+<p>28、如何让history命令显示具体时间？<br>HISTTIMEFORMAT=”%Y-%m-%d %H:%M:%S”<br>export HISTTIMEFORMAT<br>重新开机后会还原，可以写/etc/profile</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试题/" rel="tag"># 面试题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/30/yum仓库搭建/" rel="next" title="本地yum仓库">
+                <i class="fa fa-chevron-left"></i> 本地yum仓库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="葛任远">
+            
+              <p class="site-author-name" itemprop="name">葛任远</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">葛任远</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -154,7 +154,7 @@
 <meta property="og:image" content="https://gry.github.io/images/zong%E7%BB%BC%E5%90%88%E6%9E%B6%E6%9E%84/1561789053237.png">
 <meta property="og:image" content="https://gry.github.io/images/zong%E7%BB%BC%E5%90%88%E6%9E%B6%E6%9E%84/1561790532353.png">
 <meta property="og:image" content="https://gry.github.io/images/zong%E7%BB%BC%E5%90%88%E6%9E%B6%E6%9E%84/1561790560131.png">
-<meta property="og:updated_time" content="2019-10-30T12:49:24.165Z">
+<meta property="og:updated_time" content="2019-10-30T12:53:47.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="综合架构">
 <meta name="twitter:description" content="综合架构服务器配制方法">
@@ -356,7 +356,7 @@
     <link itemprop="mainEntityOfPage" href="https://gry.github.io/2019/08/27/zong综合架构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="葛任远">
+      <meta itemprop="name" content="古人云">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/head.jpg">
     </span>
@@ -1145,7 +1145,7 @@ sersync -dro  /usr/local/sersync/conf/confxml.xml</code></pre><h3 id="5-配置ls
 
 <p><img src="/images/zong%E7%BB%BC%E5%90%88%E6%9E%B6%E6%9E%84/1561790532353.png" alt="1561790532353"></p>
 <p><img src="/images/zong%E7%BB%BC%E5%90%88%E6%9E%B6%E6%9E%84/1561790560131.png" alt="1561790560131"></p>
-<h4 id="2）-临时跳转和永久跳转配置"><a href="#2）-临时跳转和永久跳转配置" class="headerlink" title="2） 临时跳转和永久跳转配置"></a>2） 临时跳转和永久跳转配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	   listen            80;</span><br><span class="line">	   server_name       www.gurenyun.com;</span><br><span class="line">	   root              /html;</span><br><span class="line">	   location  ~ ^/gurenyun &#123;</span><br><span class="line">	       rewrite  ^(.*)$  https://www.etiantian.org redirect;</span><br><span class="line">		   rewrite  ^(.*)$  https://www.etiantian.org permanent;</span><br><span class="line">	       # return 301 http://bbs.etiantian.org;</span><br><span class="line">		   # return 302 http://bbs.etiantian.org;</span><br><span class="line">	   &#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2）-临时跳转和永久跳转配置"><a href="#2）-临时跳转和永久跳转配置" class="headerlink" title="2） 临时跳转和永久跳转配置"></a>2） 临时跳转和永久跳转配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	   listen            80;</span><br><span class="line">	   server_name       www.gurenyun.com;</span><br><span class="line">	   root              /html;</span><br><span class="line">	   location  ~ ^/gurenyun &#123;</span><br><span class="line">	       rewrite  ^(.*)$  https://www.gry6.org redirect;</span><br><span class="line">		   rewrite  ^(.*)$  https://www.gry6.org permanent;</span><br><span class="line">	       # return 301 http://bbs.gry6.org;</span><br><span class="line">		   # return 302 http://bbs.gry6.org;</span><br><span class="line">	   &#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
 <p> 永久跳转记录跳转信息：  301<br>临时跳转不记录跳转信息：302</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">301永久： 用户浏览器  -请求信息-&gt;  www.360buy.com --&gt; 301 --&gt; www.jd.com</span><br><span class="line">	           客户端                              服务端</span><br><span class="line">			  用户浏览器  -请求信息-&gt;  www.360buy.com</span><br><span class="line">			                       -&gt;  www.jd.com     ---&gt; 服务端</span><br><span class="line">	总结：在浏览器上记录跳转的缓存信息</span><br><span class="line">	          www.jd.com/gurenyun.jpg   ---    </span><br><span class="line">	          www.jd.com/2017/    404</span><br><span class="line">	302临时： 用户浏览器  -请求信息-&gt;  www.360buy.com --&gt; 302 --&gt; www.jd.com</span><br><span class="line">	           客户端                              服务端</span><br><span class="line">	          用户浏览器  -请求信息-&gt;  www.360buy.com --&gt; 302 --&gt; www.jjd.com</span><br><span class="line">	           客户端                              服务端</span><br><span class="line">	总结：在浏览器上不记录跳转的缓存信息</span><br><span class="line">	          www.jd.com/gurenyun.jpg   --- www.jd.com/2018/</span><br><span class="line">	</span><br><span class="line">	补充：实现地址跳转的方法</span><br><span class="line">	第一种：利用rewrite  正则匹配</span><br><span class="line">	第二种：利用retrun</span><br></pre></td></tr></table></figure>
@@ -1165,7 +1165,7 @@ sersync -dro  /usr/local/sersync/conf/confxml.xml</code></pre><h3 id="5-配置ls
 <p> 第三个里程：重启Nginx服务<br>    [root@web03 ~]# systemctl restart nginx</p>
 <h5 id="练习3）：用户访问course-11-22-33-html实际上真实访问是-course-11-22-33-course-33-html"><a href="#练习3）：用户访问course-11-22-33-html实际上真实访问是-course-11-22-33-course-33-html" class="headerlink" title="练习3）：用户访问course-11-22-33.html实际上真实访问是/course/11/22/33/course_33.html"></a>练习3）：用户访问course-11-22-33.html实际上真实访问是/course/11/22/33/course_33.html</h5><p>​    #<a href="http://www.gurenyun.com/course-11-22-33.html" target="_blank" rel="noopener">http://www.gurenyun.com/course-11-22-33.html</a> ==&gt; <a href="http://www.gurenyun.com/course/11/22/33/course_33.html" target="_blank" rel="noopener">http://www.gurenyun.com/course/11/22/33/course_33.html</a>  </p>
 <p>第一个里程 准备真实的访问路径</p>
-<p>[root@web03 ~]# mkdir /html/www/course/11/22/33/ -p<br>[root@web03 ~]# echo “docs.etiantian.org” &gt; /html/www/course/11/22/33/course_33.html</p>
+<p>[root@web03 ~]# mkdir /html/www/course/11/22/33/ -p<br>[root@web03 ~]# echo “docs.gry6.org” &gt; /html/www/course/11/22/33/course_33.html</p>
 <p>第二个里程 Nginx跳转配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@web01 conf.d]# cat www.conf</span><br><span class="line"> server &#123;</span><br><span class="line">	   listen            80;</span><br><span class="line">	   server_name       www.gedage.com;</span><br><span class="line">	   root              /html/www;</span><br><span class="line">           location /course &#123;</span><br><span class="line">              rewrite ^/course-(.*)-(.*)-(.*).html /course/$1/$2/$3/course_33.html redirect;    </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1200,9 +1200,9 @@ server {
     $request_filename   当前请求的文件路径名（带网站的主目录/html/www/images/test.jpg）
     $request_uri        当前请求的文件路径名（不带网站的主目录/images/test.jpg）
     $scheme             用的协议，比如http或者https</code></pre><p>第三个历程：配置DNS解析<br>    10.0.0.7   gurenyun.com  <a href="http://www.gurenyun.com" target="_blank" rel="noopener">www.gurenyun.com</a>    </p>
-<h5 id="终极测验b）："><a href="#终极测验b）：" class="headerlink" title="终极测验b）："></a>终极测验b）：</h5><p>访问<a href="http://www.etiantian.org" target="_blank" rel="noopener">www.etiantian.org</a>      —&gt;  <a href="http://www.gurenyun.com" target="_blank" rel="noopener">www.gurenyun.com</a>   永久</p>
+<h5 id="终极测验b）："><a href="#终极测验b）：" class="headerlink" title="终极测验b）："></a>终极测验b）：</h5><p>访问<a href="http://www.gry6.org" target="_blank" rel="noopener">www.gry6.org</a>      —&gt;  <a href="http://www.gurenyun.com" target="_blank" rel="noopener">www.gurenyun.com</a>   永久</p>
 <p>第一个历程：准备环境<br>    将gurenyun.jpg — 站点目录</p>
-<p>第二个历程：编写配置文件：<br>    server {<br>      listen      80;<br>      server_name <a href="http://www.gurenyun.com" target="_blank" rel="noopener">www.gurenyun.com</a>;<br>         root  /html/www;<br>         index index.html;<br>         if ($host ~ <a href="http://www.etiantian.org" target="_blank" rel="noopener">www.etiantian.org</a>) {<br>            rewrite ^/(.<em>)  <a href="http://www.gurenyun.com/$1" target="_blank" rel="noopener">http://www.gurenyun.com/$1</a>  redirect;<br>         }<br>    }<br>第三个历程：主配置文件编写<br>    include /etc/nginx/conf.d/<a href="http://www.conf" target="_blank" rel="noopener">www.conf</a><br>    include /etc/nginx/conf.d/</em>.conf;<br>第四个历程：配置DNS解析<br>    10.0.0.7   gurenyun.com  <a href="http://www.gurenyun.com" target="_blank" rel="noopener">www.gurenyun.com</a> <a href="http://www.etiantian.org" target="_blank" rel="noopener">www.etiantian.org</a>    </p>
+<p>第二个历程：编写配置文件：<br>    server {<br>      listen      80;<br>      server_name <a href="http://www.gurenyun.com" target="_blank" rel="noopener">www.gurenyun.com</a>;<br>         root  /html/www;<br>         index index.html;<br>         if ($host ~ <a href="http://www.gry6.org" target="_blank" rel="noopener">www.gry6.org</a>) {<br>            rewrite ^/(.<em>)  <a href="http://www.gurenyun.com/$1" target="_blank" rel="noopener">http://www.gurenyun.com/$1</a>  redirect;<br>         }<br>    }<br>第三个历程：主配置文件编写<br>    include /etc/nginx/conf.d/<a href="http://www.conf" target="_blank" rel="noopener">www.conf</a><br>    include /etc/nginx/conf.d/</em>.conf;<br>第四个历程：配置DNS解析<br>    10.0.0.7   gurenyun.com  <a href="http://www.gurenyun.com" target="_blank" rel="noopener">www.gurenyun.com</a> <a href="http://www.gry6.org" target="_blank" rel="noopener">www.gry6.org</a>    </p>
 <p>部署LNMP架构</p>
 <p>​    L linux系统：  防火墙/selinux关闭  /tmp 1777<br>​    N nginx程序：<br>​    M mysql程序：  mariadb    yum安装<br>​    P php程序：    编译安装   yum安装 7.1<br>​    </p>
 <h3 id="13-mariadb安装过程："><a href="#13-mariadb安装过程：" class="headerlink" title="13.mariadb安装过程："></a>13.mariadb安装过程：</h3><p>yum install mariadb-server mariadb -y</p>
@@ -1321,9 +1321,9 @@ server {
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="葛任远">
+              <img class="site-author-image" itemprop="image" src="/images/head.jpg" alt="古人云">
             
-              <p class="site-author-name" itemprop="name">葛任远</p>
+              <p class="site-author-name" itemprop="name">古人云</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -1413,7 +1413,7 @@ server {
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">葛任远</span>
+  <span class="author" itemprop="copyrightHolder">古人云</span>
 
   
 </div>
